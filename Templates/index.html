@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-3">
+    {% for song in allSongs %}
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-2">
+                <img src="{{song.songThumbnail.url}}" class="img-fluid rounded-start" alt="{{song.songName}}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{song.songName}}</h5>
+                    <h6 class="card-title">Artist - {{song.album.artist.artistName}}</h6>
+                    <p class="card-text">From - {{song.album}}</p>
+                    <p class="card-text"><small class="text-muted">Last updated {{song.last_updated | timesince}} ago</small></p>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="play-button d-flex h-100 justify-content-center align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
+                        class="bi bi-play-circle" viewBox="0 0 16 16">
+                        <path
+                            d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <path
+                            d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z" />
+                    </svg>
+                </div>
+                <div class="audio-file d-none">
+                    <audio controls>
+                        <source src="{{song.song.url}}" type="audio/mpeg">
+                        Your browser does not support the audio tag.
+                    </audio>
+                    <div class="audio-controls">
+                        <button class="volume-control" title="Volume">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-volume-up" viewBox="0 0 16 16">
+                                <path
+                                    d="M3.293 3.293a1 1 0 0 1 0 1.414L1.586 6H.5a.5.5 0 0 1-.5-.5V4.5a.5.5 0 0 1 .5-.5h.086l1.707-1.707a1 1 0 0 1 1.414 0zm8.045-.542a8.458 8.458 0 0 1 0 10.472 1 1 0 0 1-1.476-1.356 6.458 6.458 0 0 0 0-7.716 1 1 0 0 1 1.476-1.356z" />
+                                <path
+                                    d="M8 12a1 1 0 0 1-.293-.707l-3-3a1 1 0 0 1 1.414-1.414L8 9.586l2.88-2.88a1 1 0 0 1 1.414 1.414l-3 3A1 1 0 0 1 8 12z" />
+                            </svg>
+                        </button>
+                        <button class="runtime-control" title="Show Runtime">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-clock" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM7 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1H7a.5.5 0 0 0 0 1zm.293 5.293a.5.5 0 0 0-.293.207l-2 2a.5.5 0 0 0 .293.853H6a.5.5 0 0 0 .5-.5V7a.5.5 0 0 0-.853-.353l-2 2a.5.5 0 0 0 .146.854l3 1a.5.5 0 0 0 .207-.293l1-3a.5.5 0 0 0-.854-.854L5 9.414l-1-1a.5.5 0 0 0-.146.854l2 2a.5.5 0 0 0 .854-.146l1-3a.5.5 0 0 0-.146-.854z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
+
